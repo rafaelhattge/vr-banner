@@ -7,6 +7,7 @@
     <title>Document</title>
     <!-- <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script> -->
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script>
         AFRAME.registerComponent('rotation-reader', {
             tick: function () {
@@ -26,11 +27,16 @@
                 // console.log(this.el.object3D.position);
             }
         });
+
     </script>
 </head>
 
 <body>
     <a-scene>
+        <!-- ASSETS -->
+        <a-asset-item id="seagull" src="assets/scene.gltf"></a-asset-item>
+
+
         <!-- CAMERA RIG -->
         <a-entity id="rig" position="0 4.5 0" rotation="0 0 0">
             <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls>
@@ -42,10 +48,17 @@
         <a-curvedimage src="assets/sky.png" position="0 20 1" scale="20 40 20" material="" geometry="thetaLength: 360">
         </a-curvedimage>
 
+        <!-- SEAGULL -->
+        <a-entity position="0 1 -5">
+            <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1" animation-mixer="clip: *;"
+            ></a-entity>
+        </a-entity>
+
         <!-- SEA -->
         <a-curvedimage src="assets/sea.jpg" theta-length="360" theta-start="45" radius="2" rotation="0 0 0"
             position="0 -.5 0" scale="3 10 3">
         </a-curvedimage>
+
 
         <!-- LEFT IMAGE -->
         <a-entity rotation="0 0 0"
