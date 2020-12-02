@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script> -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent('rotation-reader', {
+            tick: function () {
+                this.el.object3D.rotation.x = 0;
+                // `this.el` is the element.
+                // `object3D` is the three.js object.
+
+                // `rotation` is a three.js Euler using radians. `quaternion` also available.
+
+                console.log(this.el.object3D.rotation.y)
+                if (this.el.object3D.rotation.y < -1.58) {
+                    this.el.object3D.rotation.y = -1.58;
+                } if (this.el.object3D.rotation.y > 1.58) {
+                    this.el.object3D.rotation.y = 1.58;
+                }
+                // `position` is a three.js Vector3.
+                // console.log(this.el.object3D.position);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <a-scene>
+        <!-- <a-sky color="#5facf4" radius="10"></a-sky> -->
+        <a-entity id="rig" position="0 0 0" rotation="0 0 0">
+            <a-camera id="camera" rotation-reader look-controls user-height="1.1" far="100000">
+
+            </a-camera>
+        </a-entity>
+
+
+        <a-curvedimage src="assets/sky.png" position="0 20 1" scale="20 30 20">
+        </a-curvedimage>
+        <a-curvedimage src="assets/beach.png" theta-length="360" theta-start="45" radius="2" rotation="0 0 0"
+            position="0 -.5 -1" scale="3 10 3">
+        </a-curvedimage>
+        <a-image src="assets/left.png" position="-3.230 0.9 0" scale="2 2 1" rotation="0 90 0"></a-image>
+        <a-image src="assets/right.png" position="3.230 0.9 0" scale="2 2 1" rotation="0 -90 0"></a-image>
+        <!-- <a-plane color="#202020" side="double" rotation="90 0 0" scale="10 10 10"></a-plane> -->
+    </a-scene>
+
+</body>
+
+</html>
