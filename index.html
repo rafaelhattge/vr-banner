@@ -48,10 +48,21 @@
         <a-curvedimage src="assets/sky.png" position="0 20 1" scale="20 40 20" material="" geometry="thetaLength: 360">
         </a-curvedimage>
 
-        <!-- SEAGULL -->
-        <a-entity animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
-            <a-entity animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 15000">
+        <!-- SEAGULLS -->
+        <a-entity
+            animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
+            <a-entity animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 30000">
                 <a-entity position="0 5 -5" scale="0.1 0.1 0.1">
+                    <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1"
+                        animation-mixer="clip: *;"></a-entity>
+                </a-entity>
+            </a-entity>
+        </a-entity>
+
+        <a-entity
+            animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
+            <a-entity animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 28000">
+                <a-entity position="1 5 -5" scale="0.1 0.1 0.1">
                     <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1"
                         animation-mixer="clip: *;"></a-entity>
                 </a-entity>
