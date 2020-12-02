@@ -18,11 +18,11 @@
                 // `rotation` is a three.js Euler using radians. `quaternion` also available.
 
                 console.log(this.el.object3D.rotation.y)
-                // if (this.el.object3D.rotation.y < -1.58) {
-                //     this.el.object3D.rotation.y = -1.58;
-                // } if (this.el.object3D.rotation.y > 1.58) {
-                //     this.el.object3D.rotation.y = 1.58;
-                // }
+                if (this.el.object3D.rotation.y < -1.58) {
+                    this.el.object3D.rotation.y = -1.58;
+                } if (this.el.object3D.rotation.y > 1.58) {
+                    this.el.object3D.rotation.y = 1.58;
+                }
                 // `position` is a three.js Vector3.
                 // console.log(this.el.object3D.position);
             }
@@ -35,6 +35,7 @@
     <a-scene>
         <!-- ASSETS -->
         <a-asset-item id="seagull" src="assets/scene.gltf"></a-asset-item>
+        <a-asset-item id="sea-normals" src="assets/seaNormals.png"></a-asset-item>
 
 
         <!-- CAMERA RIG -->
@@ -42,6 +43,13 @@
             <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls>
 
             </a-camera>
+        </a-entity>
+
+        <!-- LIGHTS -->
+        <a-entity light="type: spot; intensity: .4; penumbra: 0.5;"
+            animation="property: position; from: -10 0 1; to: 10 0 1; loop: true; dir: alternate; dur: 6000; easing: linear;">
+        </a-entity>
+        <a-entity light="type: ambient; intensity: 2.3">
         </a-entity>
 
         <!-- SKY -->
@@ -71,15 +79,19 @@
         </a-entity>
 
         <!-- SEA -->
-        <a-curvedimage src="assets/sea.png" theta-length="360" theta-start="45" radius="2" rotation="0 0 0"
-            position="0 2.5 0" scale="3 15 3">
-        </a-curvedimage>
+        <!-- <a-curvedimage material="shader: standard; side: double; transparent: true; src: assets/sea.png; normalMap:
+        assets/seaNormals.tif;" src="assets/sea.png" theta-length="360" theta-start="45" radius="2" rotation="0 0 0"
+            position="0 2.5 0" scale="3 15 3" normal-map="#sea-normals" normal-texture-repeat="10 10" roughness="0">
+        </a-curvedimage> -->
+        <a-cylinder material="shader: standard; side: double; transparent: true; src: assets/sea.png;"
+            normal-map="#sea-normals" normal-scale="1 1" roughness="0" metalness=".6"; radius="2" rotation="0 0 0" position="0 2.5 0"
+            scale="3 15 3">
 
-
+        </a-cylinder>
         <!-- LEFT IMAGE -->
         <a-entity rotation="0 0 0"
             animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
-            <a-image src="assets/left.png" position="-3.230 2.6 0" scale="1.8 1.8 1" rotation="0 90 0"></a-image>
+            <a-image src="assets/left.png" position="-3.230 3 0" scale="1.8 1.8 1" rotation="-10 90 0"></a-image>
         </a-entity>
 
         <!-- CENTER IMAGE -->
@@ -90,7 +102,7 @@
         <!-- RIGHT IMAGE -->
         <a-entity rotation="0 0 0"
             animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
-            <a-image src="assets/right.png" position="3.230 2.6 0" scale="1.8 1.8 1" rotation="0 -90 0"></a-image>
+            <a-image src="assets/right.png" position="3.230 3 0" scale="1.8 1.8 1" rotation="-10 -90 0"></a-image>
         </a-entity>
         <!-- <a-plane color="#202020" side="double" rotation="90 0 0" scale="10 10 10"></a-plane> -->
     </a-scene>
