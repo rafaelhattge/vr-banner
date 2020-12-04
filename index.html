@@ -38,9 +38,11 @@
                 } else {
                     flockAudio.volume = (-this.el.object3D.rotation.y) / 2;
                 }
-                // console.log(flockAudio)
-                // console.log(flockAudio.volume)
 
+                // var xs = this.el.object3D.rotation.y;
+                // document.getElementById("left-img").setAttribute('rotation', { x: xs, y: 0, z: 0 })
+                // console.log(this.el.object3D.rotation.y);
+                // console.log(document.getElementById("left-img"));
             }
         });
 
@@ -52,9 +54,18 @@
     <div class="container">
         <audio id="flock-audio" src="assets/flock.mp3" autoplay loop></audio>
         <audio id="sea-audio" src="assets/sea.mp3" autoplay loop></audio>
+        <audio id="waves-audio" src="assets/waves.mp3" autoplay loop></audio>
         <a-scene>
             <!-- ASSETS -->
             <a-asset-item id="seagull" src="assets/scene.gltf"></a-asset-item>
+            <a-assets>
+                <img src="assets/right.png" id="right-txt">
+                <img src="assets/right-2.png" id="right-line">
+                <img src="assets/iceberg.jpg" id="sea">
+                <img src="assets/cloud-1.png" id="cloud-1">
+                <img src="assets/cloud-2.png" id="cloud-2">
+                <img src="assets/cloud-3.png" id="cloud-3">
+            </a-assets>
             <!-- <a-asset-item id="sea-normals" src="assets/seaNormals.png"></a-asset-item> -->
 
             <!-- LIGHTS -->
@@ -62,23 +73,37 @@
             </a-entity>
 
             <!-- CAMERA RIG -->
-            <a-entity id="rig" position="0 5.5 0" rotation="0 0 0">
-                <a-camera id="camera" position="0 0 0" rotation="00 0 0" far="1000" fov="70" rotation-reader
-                    look-controls>
-
+            <a-entity id="rig" position="0 4.5 0" rotation="0 0 0">
+                <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader
+                    look-controls animation__rotateCamera="property: rotation; startEvents: rotateCamera;"
+                    animation__moveCamera="property: position; startEvents: moveCamera;">
                 </a-camera>
             </a-entity>
 
             <!-- SEA -->
-            <a-cylinder id="sea" material="shader: standard; side: back; transparent: true; src: assets/sea.jpg;"
-                radius="3" rotation="0 0 0" position="0 1 0" scale="3 20 3">
+            <a-cylinder id="sea" material="shader: standard; side: back; transparent: true; src: #sea" radius="3"
+                rotation="0 30 0" position="0 1 0" scale="3 22 3">
+            </a-cylinder>
+
+            <!-- CLOUDS -->
+            <a-cylinder id="cloud-1" material="shader: standard; side: back; transparent: true; src: #cloud-1"
+                radius="2.9" rotation="0 30 0" position="0 -1 0" scale="3 22 3"
+                animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 160000">
+            </a-cylinder>
+            <a-cylinder id="cloud-2" material="shader: standard; side: back; transparent: true; src: #cloud-2"
+                radius="2.8" rotation="0 30 0" position="0 -1 0" scale="3 22 3"
+                animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 200000">
+            </a-cylinder>
+            <a-cylinder id="cloud-3" material="shader: standard; side: back; transparent: true; src: #cloud-3"
+                radius="2.7" rotation="0 30 0" position="0 -1 0" scale="3 22 3"
+                animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 130000">
             </a-cylinder>
 
             <!-- LEFT IMAGE -->
             <a-entity rotation="0 0 0"
                 animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
-                <a-image src="assets/left.png" position="-2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 70 0">
-                </a-image>
+                <a-image src="assets/left.png" id="left-img" position="-2.230 3.3 -1" scale="1.3 1.3 1"
+                    rotation="-10 70 0"></a-image>
             </a-entity>
 
             <!-- CENTER IMAGE -->
@@ -87,14 +112,15 @@
             </a-entity>
 
             <!-- RIGHT IMAGE -->
-            <a-entity rotation="0 0 0"
-                animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
-                <a-image src="assets/right.png" position="2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 -70 0">
-                </a-image>
+            <a-entity rotation="0 0 0">
+                <a-image src="#right-txt" position="2.230 3.3 -1" scale="1.2 1.2 1" rotation="-10 -70 0"
+                    material="alphaTest: 0.5"></a-image>
+                <a-image src="#right-line" position="2.230 3.3 -1" scale="1.4 1.4 1" rotation="-10 0 0"
+                    animation="property: rotation; to: -10 360 -0; loop: true; easing: linear; dur: 10000"></a-image>
             </a-entity>
 
             <!-- SEAGULLS -->
-            <a-entity id="seagull-flock" position="5.5 5.5 -2" scale=".7 .7 .7">
+            <a-entity id="seagull-flock" position="5.5 4.5 -2" scale=".9 .9 .9">
                 <a-entity id="seagull-group-1">
                     <a-entity id="seagull-1-translateY"
                         animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
