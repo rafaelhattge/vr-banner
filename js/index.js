@@ -14,12 +14,12 @@ window.addEventListener("load", function () {
     document.body.addEventListener("click", function () {
         gsap.to(container, 1, { opacity: 1, ease: "power2.out"});
         seaAudio.play();
-        flockAudio.play();
-        wavesAudio.volume = .3
-        wavesAudio.play();
+        // flockAudio.play();
+        // wavesAudio.volume = .3
+        // wavesAudio.play();
         gsap.to(".loading-text", .3, { opacity: 0, ease: "power2.out" });
     })
 })
-console.log(document.querySelector("#sea"))
+// console.log(document.querySelector("#sea"))
 
 // gsap.set("body", { opacity: 0 })
