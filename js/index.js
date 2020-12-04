@@ -1,21 +1,6 @@
 var container = document.querySelector(".container")
-var flockAudio = document.querySelector("#flock-audio");
-var wavesAudio = document.querySelector("#waves-audio");
 /* construct manually */
 var bar = new ldBar(".ldBar");
-/* ldBar stored in the element */
-// flockAudio.addEventListener("load", function () {
-//     bar.set(50);
-// })
-
-var seaAudio = document.querySelector("#sea-audio");
-seaAudio.addEventListener('timeupdate', function () {
-    var buffer = .44
-    if (this.currentTime > this.duration - buffer) {
-        this.currentTime = 0
-        this.play()
-    }
-});
 
 window.addEventListener("load", function () {
     bar.set(100);
@@ -23,11 +8,17 @@ window.addEventListener("load", function () {
     gsap.to(".load-txt-2", .6, { opacity: 1, ease: "power2.out", delay: .8 });
     document.body.addEventListener("click", function () {
         gsap.to(container, 1, { opacity: 1, ease: "power2.out" });
-        seaAudio.play();
-        seaAudio.volume = 0.2;
-        // flockAudio.play();
-        // wavesAudio.volume = .3
-        // wavesAudio.play();
         gsap.to(".loading-screen", .3, { opacity: 0, display: 'none', ease: "power2.out" });
+
+
+        var audio_file = new Audio("../assets/WavesLoops_Agitado_v3_1.mp3");
+        audio_file.play();
+        audio_file.addEventListener('timeupdate', function () {
+            var buffer = .44;
+            if (this.currentTime > this.duration - buffer) {
+                this.currentTime = 0
+                this.play()
+            }
+        });  
     })
 })
