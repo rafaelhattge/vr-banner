@@ -38,10 +38,13 @@
                     flockAudio.volume = (-this.el.object3D.rotation.y) / 2;
                 }
                 // console.log(flockAudio)
-                // console.log(flockAudio.volume)
-
+                var i = i + 1;
+                document.getElementById("left-img").setAttribute('rotate', { x: -3, y: 0, z: i })
+                // console.log(leftImg.components.nextData)
             }
         });
+
+
 
     </script>
 </head>
@@ -56,17 +59,13 @@
             <a-assets>
                 <img src="assets/right.png" id="right-txt">
                 <img src="assets/right-2.png" id="right-line">
-                <img src="assets/sky.png" id="sky">
-                <img src="assets/scene.gltf" id="seagull">
-                <img src="assets/sea.png" id="sea">
-                <img src="assets/left.png" id="left_element">
-                <img src="assets/center.png" id="center_element">
-                <img src="assets/seaNormals.png" id="sea_normal">
+                <img src="assets/seaNormals.png" id="sea-normals">
+                <img src="assets/gelera.jpg" id="sea">
             </a-assets>
 
             <!-- CAMERA RIG -->
             <a-entity id="rig" position="0 4.5 0" rotation="0 0 0">
-                <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls>
+                <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls animation__rotateCamera="property: rotation; startEvents: rotateCamera;" animation__moveCamera="property: position; startEvents: moveCamera;">
 
                 </a-camera>
             </a-entity>
@@ -77,15 +76,15 @@
             <a-entity light="type: ambient; intensity: 2.3">
             </a-entity>
 
-            <!-- SKY -->
-            <a-curvedimage src="sky" position="0 20 1" scale="20 40 20" material="" geometry="thetaLength: 360">
-            </a-curvedimage>
+            <!-- SKY
+            <a-curvedimage src="assets/sky.png" position="0 20 1" scale="20 40 20" material="" geometry="thetaLength: 360">
+            </a-curvedimage> -->
 
             <!-- SEAGULLS -->
             <a-entity animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
                 <a-entity animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 30000">
                     <a-entity position="0 5 -5" scale="0.1 0.1 0.1">
-                        <a-entity gltf-model="seagull" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                        <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1" animation-mixer="clip: *;">
                             <!-- sound="src: url(assets/flock.mp3); loop: true; autoplay: true" -->
                         </a-entity>
                     </a-entity>
@@ -95,7 +94,7 @@
             <a-entity animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
                 <a-entity animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 28000">
                     <a-entity position="1 5 -5" scale="0.1 0.1 0.1">
-                        <a-entity gltf-model="seagull" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1" animation-mixer="clip: *;"></a-entity>
+                        <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1" animation-mixer="clip: *;"></a-entity>
                     </a-entity>
                 </a-entity>
             </a-entity>
@@ -105,24 +104,23 @@
             assets/seaNormals.tif;" src="assets/sea.png" theta-length="360" theta-start="45" radius="2" rotation="0 0 0"
                 position="0 2.5 0" scale="3 15 3" normal-map="#sea-normals" normal-texture-repeat="10 10" roughness="0">
             </a-curvedimage> -->
-            <a-cylinder material="shader: standard; side: double; transparent: true; src: sea" normal-map="#sea-normals" normal-scale="1 1" roughness="0" metalness=".6" ; radius="2" rotation="0 0 0" position="0 2.5 0" scale="3 15 3">
+            <a-cylinder material="shader: standard; side: double; transparent: true; src: #sea;" normal-map="#sea-normals" normal-scale="1 1" roughness="0" metalness=".6" ; radius="2" rotation="0 0 0" position="0 2.5 0" scale="3 15 3">
 
             </a-cylinder>
             <!-- LEFT IMAGE -->
-            <a-entity rotation="0 0 0" animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
-                <a-image src="left_element" position="-2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 70 0"></a-image>
+            <a-entity id="left-img" rotation="0 0 0" animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
+                <a-image src="assets/left.png" position="-2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 70 0"></a-image>
             </a-entity>
 
             <!-- CENTER IMAGE -->
             <a-entity>
-                <a-image src="center_element" position="0 -1 -5" scale="1 1 1" rotation="0 0 0"></a-image>
+                <a-image src="assets/center.png" position="0 -1 -5" scale="1 1 1" rotation="0 0 0"></a-image>
             </a-entity>
 
             <!-- RIGHT IMAGE -->
             <a-entity rotation="0 0 0">
-                <a-image src="right-txt" position="2.230 3.3 -1" scale="1.2 1.2 1" rotation="-10 -70 0"></a-image>
-                <a-image src="right-line" position="2.230 3.3 -1" scale="1.4 1.4 1" rotation="-10 0 0"
-                 animation="property: rotation; to: -10 360 -0; loop: true; easing: linear; dur: 10000"></a-image>
+                <a-image src="#right-txt" position="2.230 3.3 -1" scale="1.2 1.2 1" rotation="-10 -70 0"></a-image>
+                <a-image src="#right-line" position="2.230 3.3 -1" scale="1.4 1.4 1" rotation="-10 0 0" animation="property: rotation; to: -10 360 -0; loop: true; easing: linear; dur: 10000"></a-image>
             </a-entity>
             <!-- <a-plane color="#202020" side="double" rotation="90 0 0" scale="10 10 10"></a-plane> -->
         </a-scene>
