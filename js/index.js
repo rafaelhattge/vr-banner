@@ -10,6 +10,6 @@ window.addEventListener("load", function () {
         gsap.to(".loading-text", .3, { opacity: 0, ease: "power2.out" });
     })
 })
-
+console.log(document.querySelector("#sea"))
 
 // gsap.set("body", { opacity: 0 })

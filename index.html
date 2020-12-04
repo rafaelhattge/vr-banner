@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Business</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/loading-bar.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!-- <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script> -->
 
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
@@ -56,6 +57,9 @@
             <a-asset-item id="seagull" src="assets/scene.gltf"></a-asset-item>
             <!-- <a-asset-item id="sea-normals" src="assets/seaNormals.png"></a-asset-item> -->
 
+            <!-- LIGHTS -->
+            <a-entity light="type: ambient; intensity: 1">
+            </a-entity>
 
             <!-- CAMERA RIG -->
             <a-entity id="rig" position="0 5.5 0" rotation="0 0 0">
@@ -65,50 +69,16 @@
                 </a-camera>
             </a-entity>
 
-            <!-- LIGHTS -->
-            <!-- <a-entity light="type: spot; intensity: .4; penumbra: 0.5;"
-                animation="property: position; from: -10 0 1; to: 10 0 1; loop: true; dir: alternate; dur: 6000; easing: linear;">
-            </a-entity> -->
-            <a-entity light="type: ambient; intensity: 1">
-            </a-entity>
-
-            <!-- SKY -->
-            <!-- <a-curvedimage src="assets/sky.png" position="0 20 1" scale="20 40 20" material=""
-                geometry="thetaLength: 360">
-            </a-curvedimage> -->
-
-            <!-- SEAGULLS -->
-            <a-entity
-                animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
-                <a-entity animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 30000">
-                    <a-entity position="0 6 -5" scale="0.1 0.1 0.1">
-                        <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1"
-                            animation-mixer="clip: *;">
-                            <!-- sound="src: url(assets/flock.mp3); loop: true; autoplay: true" -->
-                        </a-entity>
-                    </a-entity>
-                </a-entity>
-            </a-entity>
-
-            <a-entity
-                animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
-                <a-entity animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 28000">
-                    <a-entity position="1 6 -5" scale="0.1 0.1 0.1">
-                        <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533" scale="0.1 0.1 0.1"
-                            animation-mixer="clip: *;"></a-entity>
-                    </a-entity>
-                </a-entity>
-            </a-entity>
-
             <!-- SEA -->
-            <a-cylinder material="shader: standard; side: double; transparent: true; src: assets/sea.jpg;" radius="3"
-                rotation="0 0 0" position="0 1 0" scale="3 20 3">
+            <a-cylinder id="sea" material="shader: standard; side: back; transparent: true; src: assets/sea.jpg;"
+                radius="3" rotation="0 0 0" position="0 1 0" scale="3 20 3">
             </a-cylinder>
 
             <!-- LEFT IMAGE -->
             <a-entity rotation="0 0 0"
                 animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
-                <a-image src="assets/left.png" position="-2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 70 0"></a-image>
+                <a-image src="assets/left.png" position="-2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 70 0">
+                </a-image>
             </a-entity>
 
             <!-- CENTER IMAGE -->
@@ -122,17 +92,156 @@
                 <a-image src="assets/right.png" position="2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 -70 0">
                 </a-image>
             </a-entity>
-            <!-- <a-plane color="#202020" side="double" rotation="90 0 0" scale="10 10 10"></a-plane> -->
+
+            <!-- SEAGULLS -->
+            <a-entity id="seagull-flock" position="5.5 5.5 -2" scale=".7 .7 .7">
+                <a-entity id="seagull-group-1">
+                    <a-entity id="seagull-1-translateY"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
+                        <a-entity id="seagull-1-rotation" position="0 0 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3000">
+                            <a-entity id="seagull-1" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-2-translateY" rotation="0 10 0"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
+                        <a-entity id="seagull-2-rotation" position="0 0 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3500">
+                            <a-entity id="seagull-2" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-3-translateY" rotation="0 45 0"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
+                        <a-entity id="seagull-3-rotation" position="0 .4 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3500">
+                            <a-entity id="seagull-3" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-4-translateY" rotation="0 90 0"
+                        animation="property: position; to: 0 .4 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
+                        <a-entity id="seagull-4-rotation" position="0 .1 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500">
+                            <a-entity id="seagull-4" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                </a-entity>
+                <a-entity id="seagull-group-2" rotation="10 180 0">
+                    <a-entity id="seagull-5-translateY"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
+                        <a-entity id="seagull-5-rotation" position="0 0 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3000">
+                            <a-entity id="seagull-5" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-6-translateY" rotation="0 10 0"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
+                        <a-entity id="seagull-6-rotation" position="0 0 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3500">
+                            <a-entity id="seagull-6" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-7-translateY" rotation="0 45 0"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
+                        <a-entity id="seagull-7-rotation" position="0 .4 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3500">
+                            <a-entity id="seagull-7" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                </a-entity>
+                <a-entity id="seagull-group-3" rotation="10 90 -20">
+                    <a-entity id="seagull-8-translateY"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
+                        <a-entity id="seagull-8-rotation" position="0 0 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3000">
+                            <a-entity id="seagull-8" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-9-translateY" rotation="0 10 0"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
+                        <a-entity id="seagull-9-rotation" position="0 0 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3500">
+                            <a-entity id="seagull-9" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-10-translateY" rotation="0 45 0"
+                        animation="property: position; to: 0 -0.5 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 3000">
+                        <a-entity id="seagull-10-rotation" position="0 .4 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 3500">
+                            <a-entity id="seagull-10" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                    <a-entity id="seagull-11-translateY" rotation="0 90 0"
+                        animation="property: position; to: 0 .4 0; dir: alternate; loop: true; easing: easeInOutQuad; dur: 2000">
+                        <a-entity id="seagull-11-rotation" position="0 .1 0"
+                            animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 4500">
+                            <a-entity id="seagull-11" position="0 0 -1" scale="0.1 0.1 0.1">
+                                <a-entity gltf-model="assets/scene.gltf" position="0.75285 -2.10546 0.84533"
+                                    scale="0.1 0.1 0.1" animation-mixer="clip: *;">
+                                </a-entity>
+                            </a-entity>
+                        </a-entity>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+
         </a-scene>
     </div>
 
     <div class="loading-text">
         <p>CARREGANDO...</p>
         <p class="ready-text">Toque para iniciar</p>
+        <div class="ldBar"></div>
     </div>
 
 
     <!-- SCRIPTS -->
+    <script src="js/loading-bar.min.js"></script>
+    <script>
+        /* construct manually */
+        var bar = new ldBar(".ldBar");
+        /* ldBar stored in the element */
+        bar.set(100);
+    </script>
     <script src="js/gsap.js"></script>
     <script src="js/index.js"></script>
 </body>
