@@ -8,6 +8,7 @@ var bar = new ldBar(".ldBar");
 // flockAudio.addEventListener("load", function () {
 //     bar.set(50);
 // })
+
 window.addEventListener("load", function () {
     bar.set(100);
     gsap.to(".ready-text", 1, { opacity: 1, ease: "power2.out"});
@@ -17,9 +18,6 @@ window.addEventListener("load", function () {
         // flockAudio.play();
         // wavesAudio.volume = .3
         // wavesAudio.play();
-        gsap.to(".loading-text", .3, { opacity: 0, ease: "power2.out" });
+        gsap.to(".loading-screen", .3, { opacity: 0, ease: "power2.out" });
     })
 })
-// console.log(document.querySelector("#sea"))
-
-// gsap.set("body", { opacity: 0 })

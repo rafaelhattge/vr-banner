@@ -40,7 +40,9 @@
                 // }
 
                 // var xs = this.el.object3D.rotation.y;
-                // document.getElementById("left-img").setAttribute('rotation', { x: xs, y: 0, z: 0 })
+                // document.getElementById("left-img").setAttribute('rotation', { x: -10, y: 100, z: 0 })
+                // animation = "property: rotation; to: -10 100 0; "
+
                 // console.log(this.el.object3D.rotation.y);
                 // console.log(document.getElementById("left-img"));
             }
@@ -55,7 +57,7 @@
         <!-- <audio id="flock-audio" src="assets/flock.mp3" autoplay loop></audio> -->
         <audio id="sea-audio" src="assets/sea.mp3" autoplay loop></audio>
         <!-- <audio id="waves-audio" src="assets/waves.mp3" autoplay loop></audio> -->
-        <a-scene stats >
+        <a-scene stats>
             <!-- ASSETS -->
             <!-- <a-asset-item id="seagull" src="assets/scene.gltf"></a-asset-item> -->
             <a-assets>
@@ -74,36 +76,25 @@
 
             <!-- CAMERA RIG -->
             <a-entity id="rig" position="0 4.5 0" rotation="0 0 0">
-                <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader
-                    look-controls animation__rotateCamera="property: rotation; startEvents: rotateCamera;"
-                    animation__moveCamera="property: position; startEvents: moveCamera;">
+                <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls animation__rotateCamera="property: rotation; startEvents: rotateCamera;" animation__moveCamera="property: position; startEvents: moveCamera;">
                 </a-camera>
             </a-entity>
 
             <!-- SEA -->
-            <a-cylinder id="sea" segments-height="4" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #sea" radius="3"
-                rotation="0 -66 0" position="0 1 0" scale="3 22 3">
+            <a-cylinder id="sea" segments-height="4" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #sea" radius="3" rotation="0 -66 0" position="0 1 0" scale="3 22 3">
             </a-cylinder>
 
             <!-- CLOUDS -->
-            <a-cylinder id="cloud-1" segments-height="4" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #cloud-1"
-                radius="2.9" rotation="0 30 0" position="0 -1 0" scale="3 22 3"
-                animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 160000">
+            <a-cylinder id="cloud-1" segments-height="4" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #cloud-1" radius="2.9" rotation="0 30 0" position="0 -1 0" scale="3 22 3" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 160000">
             </a-cylinder>
-            <a-cylinder id="cloud-2" segments-height="1" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #cloud-2"
-                radius="2.8" rotation="0 30 0" position="0 -1 0" scale="3 22 3"
-                animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 200000">
+            <a-cylinder id="cloud-2" segments-height="1" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #cloud-2" radius="2.8" rotation="0 30 0" position="0 -1 0" scale="3 22 3" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 200000">
             </a-cylinder>
-            <a-cylinder id="cloud-3" segments-height="1" segments-radial="16"  material="shader: flat; side: back; transparent: true; src: #cloud-3"
-                radius="2.7" rotation="0 30 0" position="0 -1 0" scale="3 22 3"
-                animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 130000">
+            <a-cylinder id="cloud-3" segments-height="1" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #cloud-3" radius="2.7" rotation="0 30 0" position="0 -1 0" scale="3 22 3" animation="property: rotation; to: 0 360 0; loop: true; easing: linear; dur: 130000">
             </a-cylinder>
 
             <!-- LEFT IMAGE -->
-            <a-entity rotation="0 0 0"
-                animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
-                <a-image src="assets/left.png" id="left-img" position="-2.230 3.3 -1" scale="1.3 1.3 1"
-                    rotation="-10 70 0"></a-image>
+            <a-entity rotation="0 0 0" animation="property: position; to: 0 .2 0; loop: true; dir: alternate; easing: easeInOutQuad; dur: 2000">
+                <a-image src="assets/left.png" id="left-img" position="-2.230 3.3 -1" scale="1.3 1.3 1" rotation="-10 70 0"></a-image>
             </a-entity>
 
             <!-- CENTER IMAGE -->
@@ -113,10 +104,8 @@
 
             <!-- RIGHT IMAGE -->
             <a-entity rotation="0 0 0">
-                <a-image src="#right-txt" position="2.230 3.3 -1" scale="1.2 1.2 1" rotation="-10 -70 0"
-                    material="alphaTest: 0.5"></a-image>
-                <a-image src="#right-line" position="2.230 3.3 -1" scale="1.4 1.4 1" rotation="-10 0 0"
-                    animation="property: rotation; to: -10 360 -0; loop: true; easing: linear; dur: 10000"></a-image>
+                <a-image src="#right-txt" position="2.230 3.3 -1" scale="1.2 1.2 1" rotation="-10 -70 0" material="alphaTest: 0.5"></a-image>
+                <a-image src="#right-line" position="2.230 3.3 -1" scale="1.4 1.4 1" rotation="-10 0 0" animation="property: rotation; to: -10 360 -0; loop: true; easing: linear; dur: 10000"></a-image>
             </a-entity>
 
             <!-- SEAGULLS -->
@@ -253,10 +242,18 @@
         </a-scene>
     </div>
 
-    <div class="loading-text">
-        <p>CARREGANDO...</p>
-        <p class="ready-text">Toque para iniciar</p>
-        <div class="ldBar"></div>
+    <div class="loading-screen">
+        <div class="bg-load"></div>
+        <div class="loadScreen-elements">
+
+            <!-- LOAD BAR -->
+            <div class="ldBar" data-type="fill" data-img="assets/load-img.png" data-fill-background="transparent" data-fill-dir="ltr" data-img-size="100,100"></div>
+            <!-- TXT -->
+            <div class="load-txt-container">
+                <img src="assets/load-txt.png" class="load-txt-1">
+            </div>
+
+        </div>
     </div>
 
 
