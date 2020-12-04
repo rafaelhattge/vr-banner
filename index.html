@@ -57,7 +57,7 @@
         <!-- <audio id="flock-audio" src="assets/flock.mp3" autoplay loop></audio> -->
         <audio id="sea-audio" src="assets/sea.mp3" autoplay loop></audio>
         <!-- <audio id="waves-audio" src="assets/waves.mp3" autoplay loop></audio> -->
-        <a-scene stats>
+        <a-scene stats vr-mode-ui="enabled: false">
             <!-- ASSETS -->
             <!-- <a-asset-item id="seagull" src="assets/scene.gltf"></a-asset-item> -->
             <a-assets>
@@ -79,6 +79,9 @@
                 <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls animation__rotateCamera="property: rotation; startEvents: rotateCamera;" animation__moveCamera="property: position; startEvents: moveCamera;">
                 </a-camera>
             </a-entity>
+
+            <!-- PLANE -->
+            <a-plane position="0 -9 0" rotation="-90 0 0" width="16" height="16" color="#00397a"></a-plane>
 
             <!-- SEA -->
             <a-cylinder id="sea" segments-height="4" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #sea" radius="3" rotation="0 -66 0" position="0 1 0" scale="3 22 3">

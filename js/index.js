@@ -18,6 +18,6 @@ window.addEventListener("load", function () {
         // flockAudio.play();
         // wavesAudio.volume = .3
         // wavesAudio.play();
-        gsap.to(".loading-screen", .3, { opacity: 0, ease: "power2.out" });
+        gsap.to(".loading-screen", .3, { opacity: 0, display: 'none', ease: "power2.out" });
     })
 })
