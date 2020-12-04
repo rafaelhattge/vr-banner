@@ -48,6 +48,8 @@
             }
         });
 
+
+
     </script>
 </head>
 
@@ -55,7 +57,7 @@
 
     <div class="container">
         <!-- <audio id="flock-audio" src="assets/flock.mp3" autoplay loop></audio> -->
-        <audio id="sea-audio" src="assets/sea.mp3" autoplay loop></audio>
+        <audio id="sea-audio" src="assets/WavesLoops_Agitado_v3.mp3" autoplay loop></audio>
         <!-- <audio id="waves-audio" src="assets/waves.mp3" autoplay loop></audio> -->
         <a-scene stats vr-mode-ui="enabled: false">
             <!-- ASSETS -->
@@ -81,8 +83,8 @@
             </a-entity>
 
             <!-- PLANE -->
-            <a-plane position="0 -9 0" rotation="-90 0 0" width="16" height="16" color="#00397a"></a-plane>
-
+            <!-- <a-plane position="0 -9 0" rotation="-90 0 0" width="16" height="16" color="#00397a"></a-plane> -->
+            <a-plane id="floor" color="#1F58AF" material="src: #sea" geometry="" rotation="-90 0 0" scale="20 20" position="0 -9.9 0"></a-plane>
             <!-- SEA -->
             <a-cylinder id="sea" segments-height="4" segments-radial="16" material="shader: flat; side: back; transparent: true; src: #sea" radius="3" rotation="0 -66 0" position="0 1 0" scale="3 22 3">
             </a-cylinder>
@@ -254,6 +256,7 @@
             <!-- TXT -->
             <div class="load-txt-container">
                 <img src="assets/load-txt.png" class="load-txt-1">
+                <img src="assets/load-txt-click.png" class="load-txt-2">
             </div>
 
         </div>

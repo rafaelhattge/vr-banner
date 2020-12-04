@@ -11,10 +11,12 @@ var bar = new ldBar(".ldBar");
 
 window.addEventListener("load", function () {
     bar.set(100);
-    gsap.to(".ready-text", 1, { opacity: 1, ease: "power2.out"});
+    gsap.to(".load-txt-1", .6, { opacity: 0, ease: "power2.out", delay: .7});
+    gsap.to(".load-txt-2", .6, { opacity: 1, ease: "power2.out", delay: .8});
     document.body.addEventListener("click", function () {
         gsap.to(container, 1, { opacity: 1, ease: "power2.out"});
         seaAudio.play();
+        seaAudio.volume = 0.2;
         // flockAudio.play();
         // wavesAudio.volume = .3
         // wavesAudio.play();

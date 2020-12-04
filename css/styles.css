@@ -57,6 +57,18 @@ body {
     transform: translateY(-200%);
 }
 
+.load-txt-1 {
+    position: relative;
+}
+
+.load-txt-2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+}
+
 img {
     width: 100%;
 }
