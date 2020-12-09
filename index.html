@@ -12,43 +12,12 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script>
+
         AFRAME.registerComponent('rotation-reader', {
             tick: function () {
                 this.el.object3D.rotation.x = -.4;
-                // var flockAudio = document.querySelector("#flock-audio");
-
-                // `this.el` is the element.
-                // `object3D` is the three.js object.
-
-                // `rotation` is a three.js Euler using radians. `quaternion` also available.
-
-                // console.log(this.el.object3D.rotation.y)
-                // if (this.el.object3D.rotation.y < -1.58) {
-                //     this.el.object3D.rotation.y = -1.58;
-                // } if (this.el.object3D.rotation.y > 1.58) {
-                //     this.el.object3D.rotation.y = 1.58;
-                // }
-                // `position` is a three.js Vector3.
-                // console.log(this.el.object3D.position);
-                // console.log(-this.el.object3D.rotation.y)
-                // if (-this.el.object3D.rotation.y < 0) {
-                //     flockAudio.volume = 0
-                // } else if (-this.el.object3D.rotation.y > 1) {
-                //     flockAudio.volume = .5
-                // } else {
-                //     flockAudio.volume = (-this.el.object3D.rotation.y) / 2;
-                // }
-
-                // var xs = this.el.object3D.rotation.y;
-                // document.getElementById("left-img").setAttribute('rotation', { x: -10, y: 100, z: 0 })
-                // animation = "property: rotation; to: -10 100 0; "
-
-                // console.log(this.el.object3D.rotation.y);
-                // console.log(document.getElementById("left-img"));
             }
         });
-
-
 
     </script>
 </head>
@@ -59,7 +28,7 @@
         <!-- <audio id="flock-audio" src="assets/flock.mp3" autoplay loop></audio> -->
         <!-- <audio id="sea-audio" src="assets/WavesLoops_Agitado_v3.mp3" autoplay loop></audio> -->
         <!-- <audio id="waves-audio" src="assets/waves.mp3" autoplay loop></audio> -->
-        <a-scene stats vr-mode-ui="enabled: false">
+        <a-scene vr-mode-ui="enabled: false">
             <!-- ASSETS -->
             <!-- <a-asset-item id="seagull" src="assets/scene.gltf"></a-asset-item> -->
             <a-assets>
@@ -78,7 +47,7 @@
 
             <!-- CAMERA RIG -->
             <a-entity id="rig" position="0 4.5 0" rotation="0 0 0">
-                <a-camera id="camera" position="0 0 0" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls animation__rotateCamera="property: rotation; startEvents: rotateCamera;" animation__moveCamera="property: position; startEvents: moveCamera;">
+                <a-camera id="camera" position="0 0 0" wasd-controls-enabled="false" rotation="10 0 0" far="1000" fov="70" rotation-reader look-controls animation__rotateCamera="property: rotation; startEvents: rotateCamera;" animation__moveCamera="property: position; startEvents: moveCamera;">
                 </a-camera>
             </a-entity>
 
@@ -261,7 +230,6 @@
 
         </div>
     </div>
-
 
     <!-- SCRIPTS -->
     <script src="js/loading-bar.min.js"></script>

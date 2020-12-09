@@ -13,6 +13,7 @@ window.addEventListener("load", function () {
 
         var audio_file = new Audio("../assets/WavesLoops_Agitado_v3_1.mp3");
         audio_file.play();
+        audio_file.volume = .2;
         audio_file.addEventListener('timeupdate', function () {
             var buffer = .44;
             if (this.currentTime > this.duration - buffer) {
